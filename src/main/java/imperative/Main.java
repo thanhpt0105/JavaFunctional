@@ -4,6 +4,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static imperative.Main.Gender.*;
@@ -37,7 +38,10 @@ public class Main {
 //                .collect(Collectors.toList())
                 .forEach(System.out::println);
         //break down:
-        List<Person> females2 = personList.stream().filter(person -> FEMALE.equals(person.gender)).collect(Collectors.toList());
+        Predicate<Person> personPredicate = person -> FEMALE.equals(person.gender);
+        List<Person> females2 = personList.stream()
+                .filter(personPredicate)
+                .collect(Collectors.toList());
         females2.forEach(System.out::println);
     }
 
